@@ -34,6 +34,7 @@ def read_raw_file(filename):
         data = f.read()
     return data
 
+
 def write_decoded_file(filename, data):
     with open(filename, 'wb') as f:
         f.write(data)
