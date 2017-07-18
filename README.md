@@ -23,3 +23,6 @@ When it's done, you'll see:
 `Data decoded to: my_favorite_picture.jpg!`
 
 That's it!
+
+## How does this work?
+BackupCamp simply converts any file into a WAV file. Go ahead and give your resume a listen.
