@@ -1,0 +1,58 @@
+#!/usr/bin/env python
+import argparse
+import wave
+
+
+# If you have Bandcamp Pro, you can set this to 600
+MAX_FILE_SIZE = 291*1000000
+
+
+def encode_wav(filename, data):
+    wav_file = wave.open('{}.wav'.format(filename), 'wb')
+
+    # Set the wav file parameters
+    wav_file.setnchannels(1)        # Mono
+    wav_file.setsampwidth(1)        # One byte per frame
+    wav_file.setframerate(44100)    # Sample rate can be ignored
+
+    wav_file.writeframes(data)
+    wav_file.close()
+
+
+def decode_wav(filename):
+    wav_file = wave.open(filename, 'rb')
+
+    num_frames = wav_file.getnframes()
+    data = wav_file.readframes(num_frames)
+    wav_file.close()
+    return data
+
+
+def read_raw_file(filename):
+    with open(filename, 'rb') as f:
+        data = f.read()
+    return data
+
+def write_decoded_file(filename, data):
+    with open(filename, 'wb') as f:
+        f.write(data)
+
+
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-e', '--encode', help='File to encode as wav')
+    parser.add_argument('-d', '--decode', help='Wav file to decode')
+    args = parser.parse_args()
+
+    if args.encode:
+        filename = args.encode
+        data = read_raw_file(filename)
+        encode_wav(filename, data)
+        print('Data encoded to: {}.wav!'.format(filename))
+    elif args.decode:
+        filename = args.decode
+        data = decode_wav(filename)
+
+        filename = filename.replace('.wav', '')
+        write_decoded_file(filename, data)
+        print('Data decoded to: {}!'.format(filename))
