@@ -11,6 +11,8 @@ When it's done, you'll see:
 
 `Data encoded to: my_favorite_picture.jpg.wav!`
 
+Take the file generated here and upload it to a Bandcamp album.
+
 ### Decoding
 Decoding is done the same way:
 
