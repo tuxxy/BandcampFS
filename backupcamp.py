@@ -3,8 +3,9 @@ import argparse
 import wave
 
 
-# If you have Bandcamp Pro, you can set this to 600
-MAX_FILE_SIZE = 291*1000000
+# TODO: Chunk data if larger than MAX_FILE_SIZE
+# If you have Bandcamp Pro, you can change '291' to '600'
+MAX_FILE_SIZE = (291*1000000) - 256 # Subtract 256 bytes to be safe from header
 
 
 def encode_wav(filename, data):
@@ -47,8 +48,13 @@ if __name__ == '__main__':
     if args.encode:
         filename = args.encode
         data = read_raw_file(filename)
-        encode_wav(filename, data)
-        print('Data encoded to: {}.wav!'.format(filename))
+
+        if len(data) > MAX_FILE_SIZE:
+            print('Failed to encode data -- file too large!')
+            print('Max file size is: {} MBs'.format(MAX_FILE_SIZE/1000000))
+        else:
+            encode_wav(filename, data)
+            print('Data encoded to: {}.wav!'.format(filename))
     elif args.decode:
         filename = args.decode
         data = decode_wav(filename)
