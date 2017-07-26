@@ -1,6 +1,9 @@
 # BandcampFS
 BandcampFS is a proof of concept that allows people to backup files to bandcamp
 
+Blog post on usage:
+https://medium.com/@__Tux/using-bandcamp-as-a-backup-solution-3b6549d24579
+
 ## Usage
 ### Encoding
 Encoding a file to upload to bandcamp is simple:
