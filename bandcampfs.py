@@ -13,7 +13,7 @@ def encode_wav(filename, data):
 
     # Set the wav file parameters
     wav_file.setnchannels(1)        # Mono
-    wav_file.setsampwidth(1)        # One byte per frame
+    wav_file.setsampwidth(2)        # Two bytes per frame for PCM mono
     wav_file.setframerate(44100)    # Sample rate can be ignored
 
     wav_file.writeframes(data)
